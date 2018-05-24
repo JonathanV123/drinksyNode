@@ -21,14 +21,10 @@
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "pug": "^2.0.3"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "nodemon": "^1.17.5",
-    "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.4"
+    "nodemon": "^1.17.5"
   }
 }
