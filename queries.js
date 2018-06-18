@@ -5,14 +5,14 @@ const connectionString = process.env.PG_CONNECTION_STRING;
 // pools will use environment variables
 // for connection information
 
-const pool = new Pool({
-    connectionString: connectionString,
-})
+// const pool = new Pool({
+//     connectionString: connectionString,
+// })
 
-pool.query('select * from test_table', (err, res) => {
-  console.log(err, res)
-  pool.end()
-})
+// pool.query('select * from test_table', (err, res) => {
+//   console.log(err, res)
+//   pool.end()
+// })
  
 
 // async function test_connection() {
