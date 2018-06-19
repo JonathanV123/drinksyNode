@@ -1,14 +1,26 @@
 require('dotenv').config({ path: 'variables.env' })
-const connectionString = process.env.PG_CONNECTION_STRING;
-console.log(connectionString);
+const connectionStringProduction = process.env.PG_CONNECTION_STRING_PRODUCTION;
+
 module.exports = {
   development: {
     client: 'pg',
-    connection: connectionString
+    connection: 'postgres://postgres:postgres@127.0.0.1:5432/restaurants',
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds'
+    }
   },
-  test:{
+  test: {
     client: 'pg',
-    connection: 'postgres://postgres:postgres@127.0.0.1:5432/test-restaurants'
+    connection: 'postgres://postgres:postgres@127.0.0.1:5432/restaurants-test',
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds'
+    }
   }
 
   // production: {
