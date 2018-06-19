@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const routes = require('./routes/index');
+const routes = require('./routes/routingIndex');
 const cors = require('cors');
+const cookieParser = require('cookie-parser')
 const pg = require('pg');
 const errorHandlers = require('./errorHandler/errorHandling');
 
@@ -19,8 +20,9 @@ app.use(cors());
 // Takes form information from req and turns it into usable properties on body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use('/', routes);
+app.use('/api/v1/restaurants', routes);
 
 app.use(errorHandlers.notFound);
 
