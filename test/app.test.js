@@ -15,7 +15,7 @@ describe('CRUD Restaurant', () => {
                     .then(() => {
                         // Populate database
                         return knex.seed.run()
-                            .then(() => { 
+                            .then(() => {
                                 done();
                             });
                     });
@@ -44,6 +44,21 @@ describe('CRUD Restaurant', () => {
             .then((response) => {
                 expect(response.body).to.be.a('object');
                 expect(response.body).to.deep.equal(fixtures.restaurants[0]);
+                done();
+            })
+    });
+
+    it('It creates a record', (done) => {
+        request(app)
+            .post('/api/v1/restaurants')
+            .send(fixtures.singleRestaurantTestInfo)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                fixtures.singleRestaurantTestInfo.id = response.body.id;
+                expect(response.body).to.deep.equal(fixtures.singleRestaurantTestInfo);
                 done();
             })
     });

@@ -6,5 +6,11 @@ module.exports = {
     },
     getOne(id) {
         return knex('restaurant').where('id', id).first();
+    },
+    create(restaurant) {
+        return knex('restaurant').insert(restaurant, '*');
+    },
+    update(id, updatedInfo) {
+        return knex('restaurant').where('id', id).update(updatedInfo, '*')
     }
 };
