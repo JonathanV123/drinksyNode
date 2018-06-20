@@ -34,6 +34,19 @@ describe('CRUD Restaurant', () => {
                 done();
             })
     });
+
+    it('Lists a restaurant record by ID', (done) => {
+        request(app)
+            .get('/api/v1/restaurants/1')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                expect(response.body).to.deep.equal(fixtures.restaurants[0]);
+                done();
+            })
+    });
 })
 
 
