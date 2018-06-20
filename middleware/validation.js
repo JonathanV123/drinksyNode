@@ -1,5 +1,4 @@
 exports.isValidId = (req, res, next) => {
-    console.log("Valid ID Ran");
     if (!isNaN(req.params.id)) return next();
     next(new Error('Invalid ID'));
 }

@@ -1,4 +1,5 @@
 process.env.NODE_ENV = 'test';
+console.log(process.env.NODE_ENV);
 const request = require('supertest');
 const app = require('../app');
 const expect = require('chai').expect;
@@ -48,7 +49,7 @@ describe('CRUD Restaurant', () => {
             })
     });
 
-    it('It creates a record', (done) => {
+    it('It creates a restaurant record', (done) => {
         request(app)
             .post('/api/v1/restaurants')
             .send(fixtures.singleRestaurantTestInfo)
@@ -59,6 +60,40 @@ describe('CRUD Restaurant', () => {
                 expect(response.body).to.be.a('object');
                 fixtures.singleRestaurantTestInfo.id = response.body.id;
                 expect(response.body).to.deep.equal(fixtures.singleRestaurantTestInfo);
+                done();
+            })
+    });
+
+    it('It updates a restaurant record', (done) => {
+        fixtures.singleRestaurantTestInfo.rating = 100;
+        request(app)
+            .put('/api/v1/restaurants/1')
+            .send(fixtures.singleRestaurantTestInfo)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                fixtures.singleRestaurantTestInfo.id = response.body.id;
+                expect(response.body).to.deep.equal(fixtures.singleRestaurantTestInfo);
+                done();
+            })
+    });
+
+    it('It deletes a restaurant record', (done) => {
+        fixtures.singleRestaurantTestInfo.rating = 100;
+        request(app)
+            .delete('/api/v1/restaurants/1')
+            .send(fixtures.singleRestaurantTestInfo)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                fixtures.singleRestaurantTestInfo.id = response.body.id;
+                expect(response.body).to.deep.equal({
+                    deleted:true
+                });
                 done();
             })
     });

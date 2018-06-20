@@ -22,8 +22,13 @@ router.post('/',
 );
 
 router.put('/:id',
-    // isValidId,
+    isValidId,
     catchErrors(restaurant_controller.update_restaurant)
+);
+
+router.delete('/:id',
+    isValidId,
+    catchErrors(restaurant_controller.delete_restaurant)
 );
 
 module.exports = router;

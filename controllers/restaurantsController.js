@@ -27,10 +27,21 @@ exports.add_restaurant = async (req, res, next) => {
 exports.update_restaurant = async (req, res, next) => {
     const update_info = req.body;
     const id = req.params.id;
-    console.log(update_info);
     const update_restaurant = await queries.update(id, update_info);
     if (update_restaurant) {
         res.json(update_restaurant[0]);
+    } else {
+        next();
+    }
+};
+
+exports.delete_restaurant = async (req, res, next) => {
+    const id = req.params.id;
+    const delete_restaurant = await queries.delete(id);
+    if (delete_restaurant) {
+        res.json({
+            deleted: true
+        })
     } else {
         next();
     }
