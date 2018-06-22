@@ -4,7 +4,7 @@ const connectionStringProduction = process.env.PG_CONNECTION_STRING_PRODUCTION;
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://postgres:postgres@127.0.0.1:5432/restaurants',
+    connection: 'postgres://postgres:postgres@127.0.0.1:5432/users',
     migrations: {
       directory: __dirname + '/db/migrations'
     },

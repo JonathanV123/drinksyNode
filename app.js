@@ -4,12 +4,17 @@ const path = require('path');
 const routes = require('./routes/routingIndex');
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
-const pg = require('pg');
 const morgan = require('morgan')
 const helmet = require('helmet');
 const errorHandlers = require('./errorHandler/errorHandling');
-
+const passport = require('passport');
+const { strategy } = require('./passport')
 const app = express();
+
+
+passport.use(strategy);
+app.use(passport.initialize());
+
 app.use(helmet());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
@@ -25,7 +30,8 @@ app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use('/api/v1/restaurants', routes);
+app.use('/', routes);
+// app.use('/api/v1/restaurants', routes);
 
 app.use(errorHandlers.notFound);
 
