@@ -31,12 +31,15 @@ router.delete('/:id',
     catchErrors(restaurant_controller.delete_restaurant)
 );
 
-router.post('/seedUser',
-    catchErrors(user_controller.seed_user)
+router.post('/create_user',
+    catchErrors(user_controller.create_user)
 )
 
-router.post('/getToken',
-    catchErrors(auth_controller.get_token)
+router.post('/login',
+    catchErrors(auth_controller.login)
+)
+router.get('/test',
+    catchErrors(auth_controller.is_authorized)
 )
 
 module.exports = router;

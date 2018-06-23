@@ -1,7 +1,7 @@
 const queries = require('../db/queries');
 const { User } = require('../passport')
 
-exports.seed_user = async (req, res, next) => {
+exports.create_user = async (req, res, next) => {
     if (!req.body.email || !req.body.password) {
         return res.state(401).send('No Fields')
     }
@@ -11,5 +11,4 @@ exports.seed_user = async (req, res, next) => {
     })
     await user.save();
     res.send('ok');
-    next();
 }

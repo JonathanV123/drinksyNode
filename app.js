@@ -8,11 +8,11 @@ const morgan = require('morgan')
 const helmet = require('helmet');
 const errorHandlers = require('./errorHandler/errorHandling');
 const passport = require('passport');
-const { strategy } = require('./passport')
 const app = express();
 
 
-passport.use(strategy);
+// Return a middle which must be called at the start of connect or express based apps. 
+// This sets req._passport. This also sets up req.login() and req.logout()
 app.use(passport.initialize());
 
 app.use(helmet());
