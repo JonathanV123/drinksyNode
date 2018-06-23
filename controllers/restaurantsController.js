@@ -16,7 +16,8 @@ exports.get_restaurant_by_id = async (req, res, next) => {
 
 exports.add_restaurant = async (req, res, next) => {
     const restaurant = req.body;
-    const add_restaurant = await queries.create(restaurant);
+    const id = 5;
+    const add_restaurant = await queries.create(id, restaurant);
     if (add_restaurant) {
         res.json(add_restaurant[0]);
     } else {
@@ -36,6 +37,7 @@ exports.update_restaurant = async (req, res, next) => {
 };
 
 exports.delete_restaurant = async (req, res, next) => {
+    console.log('delete restaurant')
     const id = req.params.id;
     const delete_restaurant = await queries.delete(id);
     if (delete_restaurant) {

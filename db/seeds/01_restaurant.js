@@ -1,10 +1,10 @@
-const restaurants = require('../../restaurantData');
+const user_data = require('../../userData');
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex('restaurant').del()
+  return knex('users').del()
     .then(function () {
       // Inserts seed entries
-      return knex('restaurant').insert(restaurants);
+      return knex('users').insert(user_data);
     });
 };

@@ -18,8 +18,8 @@ router.get('/',
 //     catchErrors(restaurant_controller.get_restaurant_by_id)
 // );
 
-router.post('/',
-    isValidRestaurant,
+router.post('/addRestaurant',
+    // isValidRestaurant,
     catchErrors(restaurant_controller.add_restaurant)
 );
 
@@ -29,7 +29,7 @@ router.put('/:id',
 );
 
 router.delete('/:id',
-    isValidId,
+    // isValidId,
     catchErrors(restaurant_controller.delete_restaurant)
 );
 

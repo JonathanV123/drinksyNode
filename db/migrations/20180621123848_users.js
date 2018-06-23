@@ -8,11 +8,11 @@ exports.up = async function (knex, Promise) {
         table.timestamps();
     });
     await knex.schema.createTable('restaurants', (table) => {
-        table.integer('owner').primary();
+        table.increments('owner').unsigned().primary();
         table.string('title');
         table.string('description');
         table.string('drinks');
-        table.foreign('owner').references('id').inTable('users');
+        table.foreign('owner').references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
         table.timestamp('created_at').defaultTo(knex.fn.now());
     });
 };

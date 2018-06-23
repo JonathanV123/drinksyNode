@@ -7,13 +7,14 @@ module.exports = {
     getOne(id) {
         return knex('restaurant').where('id', id).first();
     },
-    create(restaurant) {
-        return knex('restaurant').insert(restaurant, '*');
+    create(id, restaurant) {
+        return knex('restaurants').insert(
+            { owner: id, description: restaurant.description, title: restaurant.title, drinks: restaurant.drinks }, '*');
     },
     update(id, updatedInfo) {
         return knex('restaurant').where('id', id).update(updatedInfo, '*')
     },
     delete(id) {
-        return knex('restaurant').where('id', id).del();
+        return knex('users').where('id', id).del();
     },
 };
