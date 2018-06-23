@@ -5,7 +5,7 @@ exports.isValidId = (req, res, next) => {
 
 exports.isValidRestaurant = (req, res, next) => {
     const restaurant = req.body;
-    // Is the title of a sticker a string & does it have a value inside of it
+    // Is the title of a restaurant a string & does it have a value inside of it
     const hasTitle = typeof restaurant.title === 'string' && restaurant.title.trim() != '';
     const hasUrl = typeof restaurant.url === 'string' && restaurant.url.trim() != '';
     if (hasTitle && hasUrl) {

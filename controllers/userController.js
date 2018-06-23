@@ -1,5 +1,5 @@
 const queries = require('../db/queries');
-const { User } = require('../passport')
+const { User } = require('../db/Models/UserModel');
 
 exports.create_user = async (req, res, next) => {
     if (!req.body.email || !req.body.password) {

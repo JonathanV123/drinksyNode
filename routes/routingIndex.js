@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+require('../passport');
 const { catchErrors } = require('../errorHandler/errorHandling');
 const { isValidId, isValidRestaurant } = require('../middleware/validation');
 const restaurant_controller = require('../controllers/restaurantsController');
@@ -11,10 +13,10 @@ router.get('/',
 )
 
 
-router.get('/:id',
-    isValidId,
-    catchErrors(restaurant_controller.get_restaurant_by_id)
-);
+// router.get('/:id',
+//     isValidId,
+//     catchErrors(restaurant_controller.get_restaurant_by_id)
+// );
 
 router.post('/',
     isValidRestaurant,
@@ -39,7 +41,9 @@ router.post('/login',
     catchErrors(auth_controller.login)
 )
 router.get('/test',
-    catchErrors(auth_controller.is_authorized)
+    passport.authenticate('jwt', { session: false }),
+    auth_controller.is_authorized
+    // catchErrors(auth_controller.is_authorized)
 )
 
 module.exports = router;
