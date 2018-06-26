@@ -37,10 +37,9 @@ const restaurants = [{
 
 
 const singleRestaurantTestInfo = {
-    owner: 6,
-    title: "This is a test restaurant",
-    description: "Best Test restaurant in L.A",
-    drinks: "Ipa"
+    title: "This Jonathans Restaurant He Created",
+    description: "Wow created a restaurant!",
+    drinks: "ROSE!"
 }
 
 const singleRestaurantTestInfoUpdate = {
@@ -50,7 +49,14 @@ const singleRestaurantTestInfoUpdate = {
     drinks: "Ipa"
 }
 
+const userTestInfo = {
+    name: 'Jonathan',
+    email: 'jiv@jiv.com',
+    password_digest: 'Password',
+}
+
 module.exports = {
+    userTestInfo,
     singleRestaurantTestInfoUpdate,
     restaurants,
     singleRestaurantTestInfo

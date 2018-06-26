@@ -6,10 +6,10 @@ const knex = require('../db/knex');
 const fixtures = require('./fixtures');
 const single_restaurant_info = fixtures.singleRestaurantTestInfo;
 const singleRestaurantTestInfoUpdate = fixtures.singleRestaurantTestInfoUpdate;
-console.log(singleRestaurantTestInfoUpdate)
+const userTestInfo = fixtures.userTestInfo;
 
 describe('CRUD Restaurant', () => {
-    beforeEach((done) => {
+    before((done) => {
         // Fresh database
         knex.migrate.rollback()
             .then(() => {
@@ -54,13 +54,12 @@ describe('CRUD Restaurant', () => {
     it('It deletes a restaurant record', (done) => {
         request(app)
             .delete('/deleteRestaurant/6')
-            // .send(single_restaurant_info)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)
             .then((response) => {
                 expect(response.body).to.be.a('object');
-                single_restaurant_info.owner = response.body.id;
+                // single_restaurant_info.owner = response.body.id;
                 expect(response.body).to.deep.equal({
                     deleted: true
                 });
@@ -81,23 +80,35 @@ describe('CRUD Restaurant', () => {
                 done();
             })
     });
-
-
-
-    // it('It creates a restaurant record', (done) => {
-    //     request(app)
-    //         .post('/addRestaurant')
-    //         .send(fixtures.singleRestaurantTestInfo)
-    //         .set('Accept', 'application/json')
-    //         .expect('Content-Type', /json/)
-    //         .expect(200)
-    //         .then((response) => {
-    //             expect(response.body).to.be.a('object');
-    //             fixtures.singleRestaurantTestInfo.id = response.body.id;
-    //             expect(response.body).to.deep.equal(fixtures.singleRestaurantTestInfo);
-    //             done();
-    //         })
-    // });
+    it('It creates a new user', (done) => {
+        request(app)
+            .post('/createUser')
+            .send(userTestInfo)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                expect(response.body).to.deep.equal({
+                    created_user: true
+                });
+                done();
+            })
+    })
+    it('It creates a restaurant record', (done) => {
+        request(app)
+            .post('/addRestaurant')
+            .send(single_restaurant_info)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                single_restaurant_info.owner = response.body.owner;
+                expect(response.body).to.deep.equal(single_restaurant_info);
+                done();
+            })
+    });
 })
 
 

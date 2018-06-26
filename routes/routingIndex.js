@@ -33,7 +33,7 @@ router.delete('/deleteRestaurant/:id',
     catchErrors(restaurant_controller.delete_restaurant)
 );
 
-router.post('/create_user',
+router.post('/createUser',
     catchErrors(user_controller.create_user)
 )
 

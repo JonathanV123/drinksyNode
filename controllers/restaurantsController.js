@@ -16,8 +16,8 @@ exports.get_restaurant_by_id = async (req, res, next) => {
 
 exports.add_restaurant = async (req, res, next) => {
     const restaurant = req.body;
-    const id = 5;
-    const add_restaurant = await queries.create(id, restaurant);
+    const user_id = 7;
+    const add_restaurant = await queries.create(user_id, restaurant);
     if (add_restaurant) {
         res.json(add_restaurant[0]);
     } else {
