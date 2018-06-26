@@ -13,22 +13,22 @@ router.get('/',
 )
 
 
-// router.get('/:id',
-//     isValidId,
-//     catchErrors(restaurant_controller.get_restaurant_by_id)
-// );
+router.get('/:id',
+    isValidId,
+    catchErrors(restaurant_controller.get_restaurant_by_id)
+);
 
 router.post('/addRestaurant',
     // isValidRestaurant,
     catchErrors(restaurant_controller.add_restaurant)
 );
 
-router.put('/:id',
+router.put('/updateRestaurant/:id',
     isValidId,
     catchErrors(restaurant_controller.update_restaurant)
 );
 
-router.delete('/:id',
+router.delete('/deleteRestaurant/:id',
     // isValidId,
     catchErrors(restaurant_controller.delete_restaurant)
 );

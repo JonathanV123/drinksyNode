@@ -37,7 +37,6 @@ exports.update_restaurant = async (req, res, next) => {
 };
 
 exports.delete_restaurant = async (req, res, next) => {
-    console.log('delete restaurant')
     const id = req.params.id;
     const delete_restaurant = await queries.delete(id);
     if (delete_restaurant) {

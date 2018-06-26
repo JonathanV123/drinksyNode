@@ -16,10 +16,10 @@ module.exports = {
     client: 'pg',
     connection: 'postgres://postgres:postgres@127.0.0.1:5432/restaurants-test',
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: __dirname + '/db/migrations/testMigrations'
     },
     seeds: {
-      directory: __dirname + '/db/seeds'
+      directory: __dirname + '/db/seeds/testSeeds'
     }
   }
 
