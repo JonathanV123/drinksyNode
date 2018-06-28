@@ -26,12 +26,14 @@ app.use(cors());
 
 // Takes form information from req and turns it into usable properties on body
 app.use(bodyParser.json());
+
 // replace tiny with combined for more info in morgan
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/', routes);
+
 // app.use('/api/v1/restaurants', routes);
 
 app.use(errorHandlers.notFound);

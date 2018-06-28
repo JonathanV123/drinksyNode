@@ -8,7 +8,7 @@ const knexDb = knex({ client: config[env].client, connection: config[env].connec
 const db = bookshelf(knexDb);
 db.plugin(securePassword);
 
-exports.User = db.Model.extend({
+exports.User_Model = db.Model.extend({
     tableName: 'users',
     hasSecurePassword: true
 })

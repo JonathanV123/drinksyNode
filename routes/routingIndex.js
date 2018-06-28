@@ -12,9 +12,8 @@ router.get('/',
     catchErrors(restaurant_controller.get_all_restaurants)
 )
 
-
 router.get('/:id',
-    isValidId,
+    // isValidId,
     catchErrors(restaurant_controller.get_restaurant_by_id)
 );
 
@@ -34,16 +33,14 @@ router.delete('/deleteRestaurant/:id',
 );
 
 router.post('/createUser',
-    catchErrors(user_controller.create_user)
+    catchErrors(user_controller.create_user),
+
 )
 
 router.post('/login',
-    catchErrors(auth_controller.login)
-)
-router.get('/test',
     passport.authenticate('jwt', { session: false }),
-    auth_controller.is_authorized
-    // catchErrors(auth_controller.is_authorized)
+    catchErrors(user_controller.login)
 )
+
 
 module.exports = router;
