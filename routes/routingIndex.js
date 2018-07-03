@@ -42,5 +42,10 @@ router.post('/login',
     catchErrors(user_controller.login)
 )
 
+router.get('/getToken',
+    // passport.authenticate('jwt', { session: false }),
+    catchErrors(user_controller.login)
+)
+
 
 module.exports = router;
