@@ -12,6 +12,11 @@ router.get('/',
     catchErrors(restaurant_controller.get_all_restaurants)
 )
 
+router.get('/test',
+    passport.authenticate('jwt', { session: false }),
+    catchErrors(restaurant_controller.get_all_restaurants)
+)
+
 router.get('/:id',
     // isValidId,
     catchErrors(restaurant_controller.get_restaurant_by_id)
@@ -38,14 +43,10 @@ router.post('/createUser',
 )
 
 router.post('/login',
-    passport.authenticate('jwt', { session: false }),
     catchErrors(user_controller.login)
 )
 
-router.get('/getToken',
-    // passport.authenticate('jwt', { session: false }),
-    catchErrors(user_controller.login)
-)
+
 
 
 module.exports = router;

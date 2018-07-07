@@ -36,12 +36,43 @@ exports.create_user = async (req, res, next) => {
             exp: Math.floor(Date.now() / 1000) + (60 * 60),
         }, process.env.SECRET_OR_KEY)
         res.json({
-            user: saved_user,
             token: token
         })
     }
 }
 
 exports.login = async (req, res, next) => {
-res.send('Yeah Nice Job')
+    if (!req.body.email || !req.body.password_digest) {
+        return res.status(401).send('No Fields')
+    }
+    // Check if user exists
+    console.log('before user');
+    const user = await User_Model.forge({ email: req.body.email }).fetch();
+    console.log(user);
+    if (!user) {
+        console.log('if user');
+        return res.status(400).send('user not found')
+    }
+    console.log('After user');
+    // user.authenticate is the secure password plugin.
+    // Authenticate password
+    const check_password = await user.authenticate(req.body.password_digest);
+    if (!check_password) {
+        return res.status(400).send('Password does not match')
+    }
+    const user_email = user.attributes.email;
+    const user_id = user.id;
+    if (user) {
+        const payload = {
+            user_id: user_id,
+            user_email: user_email,
+        };
+        const token = jwt.sign({
+            payload: payload,
+            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        }, process.env.SECRET_OR_KEY)
+        res.json({
+            token: token
+        })
+    }
 }
