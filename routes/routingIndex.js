@@ -10,12 +10,12 @@ const auth_controller = require('../controllers/authenticationController');
 
 router.get('/',
     catchErrors(restaurant_controller.get_all_restaurants)
-)
+);
 
 router.get('/test',
     passport.authenticate('jwt', { session: false }),
     catchErrors(restaurant_controller.get_all_restaurants)
-)
+);
 
 router.get('/:id',
     // isValidId,
@@ -40,11 +40,11 @@ router.delete('/deleteRestaurant/:id',
 router.post('/createUser',
     catchErrors(user_controller.create_user),
 
-)
+);
 
 router.post('/login',
     catchErrors(user_controller.login)
-)
+);
 
 
 
