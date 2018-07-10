@@ -8,7 +8,8 @@ exports.up = async function (knex, Promise) {
         table.timestamps();
     });
     await knex.schema.createTable('restaurants', (table) => {
-        table.increments('owner').unsigned().primary();
+        table.increments('id').unsigned().primary();
+        table.integer('owner');
         table.string('title');
         table.string('description');
         table.string('drinks');

@@ -12,9 +12,10 @@ router.get('/',
     catchErrors(restaurant_controller.get_all_restaurants)
 );
 
-router.get('/test',
+router.get('/home',
     passport.authenticate('jwt', { session: false }),
-    catchErrors(restaurant_controller.get_all_restaurants)
+    catchErrors(restaurant_controller.get_all_restaurants),
+
 );
 
 router.get('/:id',
@@ -41,6 +42,8 @@ router.post('/createUser',
     catchErrors(user_controller.create_user),
 
 );
+
+
 
 router.post('/login',
     catchErrors(user_controller.login)

@@ -1,32 +1,32 @@
 module.exports = [
     {
         "name": "Jim",
-        "email": "hayden@hayden.com",
+        "email": "Jim@Jim.com",
         "password_digest": "Password"
     },
     {
         "name": "Bob",
-        "email": "Burger@hayden.com",
+        "email": "Bob@Bob.com",
         "password_digest": "Password"
     },
     {
         "name": "Scott",
-        "email": "Simpang@hayden.com",
+        "email": "Scott@hayden",
         "password_digest": "Password"
     },
     {
         "name": "Tim",
-        "email": "Shwarmaland@hayden.com",
+        "email": "Tim@Tim.com",
         "password_digest": "Password"
     },
     {
         "name": "Chase",
-        "email": "Bigfoot@hayden.com",
+        "email": "Chase@Chase.com",
         "password_digest": "Password"
     },
     {
         "name": "Jennifer",
-        "email": "Night + Market Song@hayden.com",
+        "email": "Jennifer@Jennifer.com",
         "password_digest": "Password"
     },
 ]
