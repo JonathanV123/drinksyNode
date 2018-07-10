@@ -73,7 +73,11 @@ exports.login = async (req, res, next) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
             }, process.env.SECRET_OR_KEY)
             res.json({
-                token: token
+                user_profile: {
+                    user_id: user_id,
+                    user_email: user_email,
+                },
+                token: token,
             })
         }
     }
