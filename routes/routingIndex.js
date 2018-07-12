@@ -12,15 +12,15 @@ router.get('/',
     catchErrors(restaurant_controller.get_all_restaurants)
 );
 
-router.get('/home',
+router.get('/home/:id',
     passport.authenticate('jwt', { session: false }),
-    catchErrors(restaurant_controller.get_all_restaurants),
+    catchErrors(restaurant_controller.get_restaurant_by_id)
 
 );
 
-router.get('/:id',
+router.post('/verifyToken',
     // isValidId,
-    catchErrors(restaurant_controller.get_restaurant_by_id)
+    catchErrors(auth_controller.verifyToken)
 );
 
 router.post('/addRestaurant',

@@ -15,9 +15,7 @@ const strategy = new JwtStrategy(options, (jwt, next) => {
     console.log('Pew pew pew pew pew pew pew')
     // Instantiate a new collection 
     console.log("STRATEGY IN PASSPORT.JS HAS STARTED");
-    console.log(jwt);
     User_Model.forge({ id: jwt.payload.user_id }).fetch().then(res => {
-        console.log(res);
         next(null, res);
     })
     console.log("STRATEGY IN PASSPORT.JS HAS ENDED");

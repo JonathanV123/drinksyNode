@@ -19,3 +19,23 @@ exports.getToken = async (req, res, next) => {
     // Retruns a middleware which runs the strategies. If one of the strategies succeeds, this will set req.user.
     res.send('Im protected')
 }
+
+exports.verifyToken = async (req, res, next) => {
+    console.log("!!!!!!!!!!!!!!!!");
+    console.log(req.body);
+    console.log("!!!!!!!!!!!!!!!!");
+    const token = req.body.token;
+    var decoded = jwt.verify(token, process.env.SECRET_OR_KEY);
+    console.log(decoded);
+    if (decoded) {
+        res.json({
+            token: 'Valid',
+            user: {
+                id: decoded.payload.user_id,
+                email: decoded.payload.user_email
+            }
+        });
+    } else {
+        res.send('Invalid Token');
+    }
+}
