@@ -21,21 +21,19 @@ exports.getToken = async (req, res, next) => {
 }
 
 exports.verifyToken = async (req, res, next) => {
-    console.log("!!!!!!!!!!!!!!!!");
-    console.log(req.body);
-    console.log("!!!!!!!!!!!!!!!!");
     const token = req.body.token;
-    var decoded = jwt.verify(token, process.env.SECRET_OR_KEY);
-    console.log(decoded);
-    if (decoded) {
-        res.json({
-            token: 'Valid',
-            user: {
-                id: decoded.payload.user_id,
-                email: decoded.payload.user_email
-            }
-        });
-    } else {
-        res.send('Invalid Token');
-    }
+    jwt.verify(token, process.env.SECRET_OR_KEY, (err, decoded) => {
+        if (err) {
+            res.send('Invalid Token');
+        } else {
+            res.json({
+                token: 'Valid',
+                user: {
+                    id: decoded.payload.user_id,
+                    email: decoded.payload.user_email,
+                    name: decoded.payload.name
+                }
+            });
+        }
+    });
 }

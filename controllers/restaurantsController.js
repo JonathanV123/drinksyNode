@@ -6,8 +6,10 @@ exports.get_all_restaurants = async (req, res) => {
 };
 
 exports.get_restaurant_by_id = async (req, res, next) => {
+    console.log('HOME TEST ROUTE HIT');
     const single_restaurant_by_id = await queries.getOne(req.params.id);
     if (single_restaurant_by_id) {
+        console.log(single_restaurant_by_id);
         res.json(single_restaurant_by_id);
     } else {
         next();

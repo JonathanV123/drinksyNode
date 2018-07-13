@@ -19,22 +19,24 @@ exports.create_user = async (req, res, next) => {
         // Save User to DB
         const saved_user = await user_creation.save();
         // Find user saved in DB with email
-        const query_user = await User_Model.forge({ email: req.body.email }).fetch();
-        if (!query_user) {
-            return res.status(400).send({ message: 'Invalid Email' })
-        }
+        // const query_user = await User_Model.forge({ email: req.body.email }).fetch();
+        // if (!query_user) {
+        //     return res.status(400).send({ message: 'Invalid Email' })
+        // }
         // user.authenticate is the secure password plugin.
         // Authenticate password
         // const user_from_db = await query_user.authenticate(req.body.password_digest);
         // if(!user_from_db){
         //     return res.status(400).send('Password does not match')
         // }
-        const user_email = query_user.attributes.email;
-        const user_id = query_user.id;
+        const user_email = saved_user.attributes.email;
+        const user_id = saved_user.id;
+        const name = saved_user.attributes.name;
         if (query_user) {
             const payload = {
                 user_id: user_id,
                 user_email: user_email,
+                name: name,
             };
             const token = jwt.sign({
                 payload: payload,
@@ -63,21 +65,23 @@ exports.login = async (req, res, next) => {
     const valid_password = await user.authenticate(req.body.password_digest);
     if (valid_password) {
         const user_email = user.attributes.email;
+        const name = user.attributes.name;
         const user_id = user.id;
         if (user) {
             const payload = {
                 user_id: user_id,
                 user_email: user_email,
+                name: name
             };
             const token = jwt.sign({
                 payload: payload,
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
             }, process.env.SECRET_OR_KEY)
             res.json({
-                user_profile: {
-                    user_id: user_id,
-                    user_email: user_email,
-                },
+                // user_profile: {
+                //     user_id: user_id,
+                //     user_email: user_email,
+                // },
                 token: token,
             })
         }
