@@ -14,7 +14,7 @@ router.get('/',
 
 router.get('/home/:id',
     passport.authenticate('jwt', { session: false }),
-    catchErrors(restaurant_controller.get_restaurant_by_id)
+    catchErrors(restaurant_controller.get_restaurants_by_id)
 
 );
 

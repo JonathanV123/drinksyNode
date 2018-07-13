@@ -4,8 +4,8 @@ module.exports = {
     getAll() {
         return knex('restaurants');
     },
-    getOne(id) {
-        return knex('restaurants').where('owner', id).first();
+    getAllByOwner(id) {
+        return knex('restaurants').where('owner', id)
     },
     create(id, restaurant) {
         return knex('restaurants').insert(
@@ -16,6 +16,6 @@ module.exports = {
     },
     delete(id) {
         console.log(id);
-        return knex('restaurants').where('owner', id).del();
+        return knex('restaurants').where('id', id).del();
     },
 };
