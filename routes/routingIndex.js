@@ -18,6 +18,11 @@ router.get('/home/:id',
 
 );
 
+router.get('/restaurant/:id',
+    passport.authenticate('jwt', { session: false }),
+    catchErrors(restaurant_controller.get_restaurant_by_id)
+);
+
 router.post('/verifyToken',
     // isValidId,
     catchErrors(auth_controller.verifyToken)

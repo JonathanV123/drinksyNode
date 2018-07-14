@@ -16,6 +16,18 @@ exports.get_restaurants_by_id = async (req, res, next) => {
     }
 };
 
+exports.get_restaurant_by_id = async (req, res, next) => {
+    const restaurant = await queries.getById(req.params.id);
+    console.log(restaurant);
+    if (restaurant) {
+        res.json({
+            restaurant
+        });
+    } else {
+        res.send('No Restaurant Found')
+    }
+};
+
 exports.add_restaurant = async (req, res, next) => {
     const restaurant = req.body;
     const user_id = 7;
@@ -40,9 +52,7 @@ exports.update_restaurant = async (req, res, next) => {
 
 exports.delete_restaurant = async (req, res, next) => {
     const id = req.params.id;
-    console.log(req.params.id)
     const delete_restaurant = await queries.delete(id);
-    console.log(delete_restaurant);
     if (delete_restaurant) {
         res.json({
             deleted: true
