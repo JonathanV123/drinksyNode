@@ -30,10 +30,11 @@ router.post('/verifyToken',
 
 router.post('/addRestaurant',
     // isValidRestaurant,
+    passport.authenticate('jwt', { session: false }),
     catchErrors(restaurant_controller.add_restaurant)
 );
 
-router.put('/updateRestaurant/:id',
+router.patch('/updateRestaurant/:id',
     isValidId,
     catchErrors(restaurant_controller.update_restaurant)
 );

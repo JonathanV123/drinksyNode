@@ -15,7 +15,7 @@ module.exports = {
             { owner: id, description: restaurant.description, title: restaurant.title, drinks: restaurant.drinks }, '*');
     },
     update(id, updatedInfo) {
-        return knex('restaurants').where('owner', id).update(updatedInfo, '*')
+        return knex('restaurants').where('id', id).update(updatedInfo, '*')
     },
     delete(id) {
         console.log(id);
