@@ -28,7 +28,7 @@ router.post('/verifyToken',
     catchErrors(auth_controller.verifyToken)
 );
 
-router.post('/addRestaurant',
+router.post('/addRestaurant/:id',
     // isValidRestaurant,
     passport.authenticate('jwt', { session: false }),
     catchErrors(restaurant_controller.add_restaurant)
