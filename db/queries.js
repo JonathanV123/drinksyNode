@@ -12,7 +12,17 @@ module.exports = {
     },
     create(id, restaurant) {
         return knex('restaurants').insert(
-            { owner: id, description: restaurant.description, title: restaurant.title, drinks: restaurant.drinks }, '*');
+            {
+                owner: id,
+                description: restaurant.description,
+                title: restaurant.title,
+                food: restaurant.food,
+                beer: restaurant.beer,
+                wine: restaurant.wine,
+                cocktails: restaurant.cocktails,
+                from: restaurant.from,
+                to: restaurant.to
+            }, '*');
     },
     update(id, updatedInfo) {
         return knex('restaurants').where('id', id).update(updatedInfo, '*')

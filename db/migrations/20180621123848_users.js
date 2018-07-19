@@ -12,7 +12,12 @@ exports.up = async function (knex, Promise) {
         table.integer('owner');
         table.string('title');
         table.string('description');
-        table.string('drinks');
+        table.string('food');
+        table.string('beer');
+        table.string('wine');
+        table.string('cocktails');
+        table.string('from');
+        table.string('to');
         table.foreign('owner').references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
         table.timestamp('created_at').defaultTo(knex.fn.now());
     });
