@@ -9,6 +9,8 @@ module.exports = [
         'wine': 'Decent',
         'from': '3',
         'to': '7',
+        'fromTimeOfDay': 'am',
+        'toTimeOfDay': 'pm',
         "description": "Oysters and Seafood"
     },
     {
@@ -21,6 +23,8 @@ module.exports = [
         'wine': 'Decent',
         'from': '4',
         'to': '9',
+        'fromTimeOfDay': 'am',
+        'toTimeOfDay': 'pm',
         "description": "Good burgers"
     },
     {
@@ -33,6 +37,8 @@ module.exports = [
         'wine': 'Decent',
         'from': '5',
         'to': '8',
+        'fromTimeOfDay': 'am',
+        'toTimeOfDay': 'pm',
         "description": "Really good indonesian food"
     },
     {
@@ -45,6 +51,8 @@ module.exports = [
         'wine': 'Decent',
         'from': '5',
         'to': '7',
+        'fromTimeOfDay': 'am',
+        'toTimeOfDay': 'pm',
         "description": "Good wraps and plates"
     },
     {
@@ -57,6 +65,8 @@ module.exports = [
         'wine': 'Decent',
         'from': '5',
         'to': '7',
+        'fromTimeOfDay': 'am',
+        'toTimeOfDay': 'pm',
         "description": "Good happy hour spot with taco stand"
     },
     {
@@ -69,6 +79,8 @@ module.exports = [
         'wine': 'Decent',
         'from': '5',
         'to': '7',
+        'fromTimeOfDay': 'am',
+        'toTimeOfDay': 'pm',
         "description": "Best thai food in L.A"
     },
 ]

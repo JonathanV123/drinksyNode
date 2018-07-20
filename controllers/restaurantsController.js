@@ -31,7 +31,31 @@ exports.get_restaurant_by_id = async (req, res, next) => {
 exports.add_restaurant = async (req, res, next) => {
     const restaurant = req.body;
     const user_id = req.params.id;
-    console.log(req.body);
+    // From 
+    standardToMilitary(true, false, req.body.to, req.body.toTimeOfDay)
+    // To
+    standardToMilitary(false, true, req.body.from, req.body.fromTimeOfDay)
+    function standardToMilitary(to, from, time, m) {
+        // To Logic ************* REFACTOR THIS UGLY FUNCTION
+        if (from === false && to === true) {
+            time = parseInt(time, 10);
+            if (m === 'am') {
+                req.body.to = time === 12 ? 0 : time;
+            } else {
+                req.body.to = time === 12 ? 12 : time + 12;
+            }
+        }
+        // From Logic ************* 
+        if (from === true && to === false) {
+            time = parseInt(time, 10);
+            if (m === 'am') {
+                req.body.from = time === 12 ? 0 : time;
+            } else {
+                req.body.from = time === 12 ? 12 : time + 12;
+            }
+        }
+
+    }
     const add_restaurant = await queries.create(user_id, restaurant);
     if (add_restaurant) {
         res.json(add_restaurant[0]);

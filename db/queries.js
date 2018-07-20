@@ -21,7 +21,9 @@ module.exports = {
                 wine: restaurant.wine,
                 cocktails: restaurant.cocktails,
                 from: restaurant.from,
-                to: restaurant.to
+                to: restaurant.to,
+                fromTimeOfDay: restaurant.fromTimeOfday,
+                toTimeOfDay: restaurant.toTimeOfday
             }, '*');
     },
     update(id, updatedInfo) {

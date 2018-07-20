@@ -18,6 +18,8 @@ exports.up = async function (knex, Promise) {
         table.string('cocktails');
         table.string('from');
         table.string('to');
+        table.string('fromTimeOfDay');
+        table.string('toTimeOfDay');
         table.foreign('owner').references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
         table.timestamp('created_at').defaultTo(knex.fn.now());
     });
