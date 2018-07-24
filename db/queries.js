@@ -10,7 +10,7 @@ module.exports = {
     getById(id) {
         return knex('restaurants').where('id', id).first();
     },
-    create(id, restaurant) {
+    create(id, toMilitary, fromMilitary, restaurant) {
         return knex('restaurants').insert(
             {
                 owner: id,
@@ -20,10 +20,12 @@ module.exports = {
                 beer: restaurant.beer,
                 wine: restaurant.wine,
                 cocktails: restaurant.cocktails,
-                from: restaurant.from,
-                to: restaurant.to,
-                fromTimeOfDay: restaurant.fromTimeOfday,
-                toTimeOfDay: restaurant.toTimeOfday
+                fromMilitary: fromMilitary,
+                toMilitary: toMilitary,
+                fromStandard: restaurant.from,
+                toStandard: restaurant.to,
+                fromTimeOfDay: restaurant.fromTimeOfDay,
+                toTimeOfDay: restaurant.toTimeOfDay
             }, '*');
     },
     update(id, updatedInfo) {
