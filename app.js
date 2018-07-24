@@ -22,7 +22,7 @@ app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
-  origin: 'http://http://jonathanvoxland.com',
+  origin: 'http://jonathanvoxland.com',
   optionsSuccessStatus: 200,
 }
 app.use(cors(corsOptions));
