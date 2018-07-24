@@ -32,7 +32,6 @@ module.exports = {
         return knex('restaurants').where('id', id).update(updatedInfo, '*')
     },
     delete(id) {
-        console.log(id);
         return knex('restaurants').where('id', id).del();
     },
 };

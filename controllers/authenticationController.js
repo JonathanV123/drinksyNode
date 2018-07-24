@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 
 
 exports.is_authorized = async (req, res, next) => {
-    console.log(req.user);
     res.send('Im protected')
 }
 

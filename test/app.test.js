@@ -89,7 +89,6 @@ describe('CRUD Restaurant', () => {
             .expect('Content-Type', /json/)
             .expect(200)
             .then((response) => {
-                console.log(process.env.TEST_TOKEN)
                 expect(response.body).to.be.a('object');
                 expect(response.body.token).to.be.a('string');
                 done();

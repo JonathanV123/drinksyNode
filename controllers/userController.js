@@ -19,16 +19,10 @@ exports.create_user = async (req, res, next) => {
         // Save User to DB
         const saved_user = await user_creation.save();
         // Find user saved in DB with email
-        // const query_user = await User_Model.forge({ email: req.body.email }).fetch();
-        // if (!query_user) {
-        //     return res.status(400).send({ message: 'Invalid Email' })
-        // }
-        // user.authenticate is the secure password plugin.
-        // Authenticate password
-        // const user_from_db = await query_user.authenticate(req.body.password_digest);
-        // if(!user_from_db){
-        //     return res.status(400).send('Password does not match')
-        // }
+        const query_user = await User_Model.forge({ email: req.body.email }).fetch();
+        if (!query_user) {
+            return res.status(400).send({ message: 'Invalid Email' })
+        }
         const user_email = saved_user.attributes.email;
         const user_id = saved_user.id;
         const name = saved_user.attributes.name;
@@ -49,7 +43,6 @@ exports.create_user = async (req, res, next) => {
     }
 
 }
-
 
 exports.login = async (req, res, next) => {
     if (!req.body.email || !req.body.password_digest) {

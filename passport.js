@@ -12,14 +12,9 @@ const options = {
 };
 
 const strategy = new JwtStrategy(options, (jwt, next) => {
-    console.log('Pew pew pew pew pew pew pew')
     // Instantiate a new collection 
-    console.log("STRATEGY IN PASSPORT.JS HAS STARTED");
     User_Model.forge({ id: jwt.payload.user_id }).fetch().then(res => {
         next(null, res);
     })
-    console.log("STRATEGY IN PASSPORT.JS HAS ENDED");
 });
-console.log("USER IN PASSPORT.JS HAS ENDED");
-
 passport.use(strategy);
