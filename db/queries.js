@@ -4,18 +4,34 @@ module.exports = {
     getAll() {
         return knex('restaurants');
     },
-    getOne(id) {
-        return knex('restaurants').where('owner', id).first();
+    getAllByOwner(id) {
+        return knex('restaurants').where('owner', id)
     },
-    create(id, restaurant) {
+    getById(id) {
+        return knex('restaurants').where('id', id).first();
+    },
+    create(id, toMilitary, fromMilitary, restaurant) {
         return knex('restaurants').insert(
-            { owner: id, description: restaurant.description, title: restaurant.title, drinks: restaurant.drinks }, '*');
+            {
+                owner: id,
+                description: restaurant.description,
+                title: restaurant.title,
+                food: restaurant.food,
+                beer: restaurant.beer,
+                wine: restaurant.wine,
+                cocktails: restaurant.cocktails,
+                fromMilitary: fromMilitary,
+                toMilitary: toMilitary,
+                fromStandard: restaurant.from,
+                toStandard: restaurant.to,
+                fromTimeOfDay: restaurant.fromTimeOfDay,
+                toTimeOfDay: restaurant.toTimeOfDay
+            }, '*');
     },
     update(id, updatedInfo) {
-        return knex('restaurants').where('owner', id).update(updatedInfo, '*')
+        return knex('restaurants').where('id', id).update(updatedInfo, '*')
     },
     delete(id) {
-        console.log(id);
-        return knex('restaurants').where('owner', id).del();
+        return knex('restaurants').where('id', id).del();
     },
 };

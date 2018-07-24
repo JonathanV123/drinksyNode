@@ -12,6 +12,5 @@ exports.seed = async function (knex, Promise) {
     // Insert restaurants in restaurants database
     await knex('restaurants').insert(restaurant_data);
   } catch (err) {
-    console.log(err);
   }
 };

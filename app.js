@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(cors());
+// app.options('*', cors())
 
 // Takes form information from req and turns it into usable properties on body
 app.use(bodyParser.json());

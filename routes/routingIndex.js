@@ -10,19 +10,31 @@ const auth_controller = require('../controllers/authenticationController');
 
 router.get('/',
     catchErrors(restaurant_controller.get_all_restaurants)
-)
+);
 
-router.get('/:id',
-    // isValidId,
+router.get('/home/:id',
+    passport.authenticate('jwt', { session: false }),
+    catchErrors(restaurant_controller.get_restaurants_by_id)
+
+);
+
+router.get('/restaurant/:id',
+    passport.authenticate('jwt', { session: false }),
     catchErrors(restaurant_controller.get_restaurant_by_id)
 );
 
-router.post('/addRestaurant',
+router.post('/verifyToken',
+    // isValidId,
+    catchErrors(auth_controller.verifyToken)
+);
+
+router.post('/addRestaurant/:id',
     // isValidRestaurant,
+    passport.authenticate('jwt', { session: false }),
     catchErrors(restaurant_controller.add_restaurant)
 );
 
-router.put('/updateRestaurant/:id',
+router.patch('/updateRestaurant/:id',
     isValidId,
     catchErrors(restaurant_controller.update_restaurant)
 );
@@ -35,12 +47,15 @@ router.delete('/deleteRestaurant/:id',
 router.post('/createUser',
     catchErrors(user_controller.create_user),
 
-)
+);
+
+
 
 router.post('/login',
-    passport.authenticate('jwt', { session: false }),
     catchErrors(user_controller.login)
-)
+);
+
+
 
 
 module.exports = router;

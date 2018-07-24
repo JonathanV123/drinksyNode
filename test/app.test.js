@@ -7,6 +7,7 @@ const fixtures = require('./fixtures');
 const single_restaurant_info = fixtures.singleRestaurantTestInfo;
 const singleRestaurantTestInfoUpdate = fixtures.singleRestaurantTestInfoUpdate;
 const userTestInfo = fixtures.userTestInfo;
+const test_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOjcsInVzZXJfZW1haWwiOiJqaXZAaml2LmNvbSJ9LCJleHAiOjE1MzExMDk5MjksImlhdCI6MTUzMTEwNjMyOX0.8cnTUjOo-qfKdn1McOZW6ovu9ogtaKcv1cEOC_xuuwc';
 
 describe('CRUD Restaurant', () => {
     before((done) => {
@@ -89,9 +90,7 @@ describe('CRUD Restaurant', () => {
             .expect(200)
             .then((response) => {
                 expect(response.body).to.be.a('object');
-                expect(response.body).to.deep.equal({
-                    created_user: true
-                });
+                expect(response.body.token).to.be.a('string');
                 done();
             })
     })
