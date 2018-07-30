@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes/routingIndex');
-const cors = require('cors');
+// const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const helmet = require('helmet');
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   optionsSuccessStatus: 200,
 // }
 // app.use(cors(corsOptions));
-app.options('http://jonathanvoxland.com', cors())
+// app.options('http://jonathanvoxland.com', cors())
 // Takes form information from req and turns it into usable properties on body
 app.use(bodyParser.json());
 
