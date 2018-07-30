@@ -21,12 +21,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, 'public')));
 
-var corsOptions = {
-  origin: 'http://jonathanvoxland.com',
-  optionsSuccessStatus: 200,
-}
-app.use(cors(corsOptions));
-
+// var corsOptions = {
+//   origin: 'http://jonathanvoxland.com',
+//   optionsSuccessStatus: 200,
+// }
+// app.use(cors(corsOptions));
+app.options('http://jonathanvoxland.com', cors())
 // Takes form information from req and turns it into usable properties on body
 app.use(bodyParser.json());
 
