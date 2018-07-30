@@ -1,6 +1,6 @@
 require('dotenv').config({ path: 'variables.env' })
 const connectionStringProduction = process.env.PG_CONNECTION_STRING_PRODUCTION;
-
+// Modify for ENV variables
 module.exports = {
   development: {
     client: 'pg',
