@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "engines": {
+    "node": "8.9.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JonathanV123/sqlApp.git"
