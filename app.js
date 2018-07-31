@@ -21,12 +21,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var corsOptions = {
-//   origin: 'http://jonathanvoxland.com',
-//   optionsSuccessStatus: 200,
-// }
-// app.use(cors(corsOptions));
-app.options('http://jonathanvoxland.com', cors())
+var corsOptions = {
+  origin: 'http://jonathanvoxland.com',
+  optionsSuccessStatus: 200,
+}
+
 // Takes form information from req and turns it into usable properties on body
 app.use(bodyParser.json());
 
@@ -34,7 +33,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+app.use(cors(corsOptions));
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers",
