@@ -1,10 +1,6 @@
 const queries = require('../db/queries');
 
-exports.get_all_restaurants = async (req, res) => {
-    const all_restaurants = await queries.getAll();
-    res.json(all_restaurants);
-};
-
+// Get all restaurants matching owner ID
 exports.get_restaurants_by_id = async (req, res, next) => {
     const restaurants = await queries.getAllByOwner(req.params.id);
     if (restaurants) {
@@ -15,7 +11,7 @@ exports.get_restaurants_by_id = async (req, res, next) => {
         res.send('You have no restaurants')
     }
 };
-
+// Get a restaurant by individual restaurant ID
 exports.get_restaurant_by_id = async (req, res, next) => {
     const restaurant = await queries.getById(req.params.id);
     if (restaurant) {
@@ -57,7 +53,9 @@ exports.add_restaurant = async (req, res, next) => {
         }
 
     }
+    // Add the restaurant
     const add_restaurant = await queries.create(user_id, toMilitary, fromMilitary, restaurant);
+    // If successfully added send restaurant info back to client.
     if (add_restaurant) {
         res.json(add_restaurant[0]);
     } else {
@@ -97,12 +95,13 @@ exports.update_restaurant = async (req, res, next) => {
     req.body.toMilitary = toMilitary;
     req.body.fromMilitary = fromMilitary;
     const update_info = req.body;
+    // Edit the restaurant
     const update_restaurant = await queries.update(id, update_info);
+    // If successfully edited send restaurant info back to client.
     if (update_restaurant) {
         res.json(update_restaurant[0]);
     } else {
-        // TODO send err on no update
-        next();
+        res.status(400).send('Unable to update you restaurant. Please try again')
     }
 };
 
