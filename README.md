@@ -1,5 +1,6 @@
 # Drinksy Back-End Node.js
 Save your favorite Happy Hour spots, and see if they are offering Happy Hour now!
+You can view the app here: [See Live](http://jonathanvoxland.com/projects/drinksyReact/#/)
 # Getting Started
 To view a test account login with the email test@test.com and test as password
 or create your own account. (This app is best viewed when you have added restaurants to view)
