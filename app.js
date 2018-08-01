@@ -12,10 +12,8 @@ const passport = require('passport');
 const app = express();
 
 
-// Return a middle which must be called at the start of connect or express based apps. 
-// This sets req._passport. This also sets up req.login() and req.logout()
 app.use(passport.initialize());
-
+// Help secure app using helmet (sets various HTTP headers)
 app.use(helmet());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
@@ -34,20 +32,8 @@ app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//   if (req.method === "OPTIONS") {
-//     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-//     return res.status(200).json({});
-//   }
-//   next();
-// });
 
 app.use('/', routes);
-
-// app.use('/api/v1/restaurants', routes);
 
 app.use(errorHandlers.notFound);
 

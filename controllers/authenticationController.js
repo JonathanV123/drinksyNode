@@ -1,22 +1,6 @@
-const { User_Model } = require('../db/Models/UserModel');
 const jwt = require('jsonwebtoken');
 
-
-
-
-exports.is_authorized = async (req, res, next) => {
-    res.send('Im protected')
-}
-
-
-exports.getToken = async (req, res, next) => {
-    const query_user = await User_Model.forge({ email: req.body.email }).fetch();
-    if (!query_user) {
-        return res.status(400).send('user not found')
-    }
-    res.send('Im protected')
-}
-
+// Check to see if a token is valid
 exports.verifyToken = async (req, res, next) => {
     const token = req.body.token;
     jwt.verify(token, process.env.SECRET_OR_KEY, (err, decoded) => {
