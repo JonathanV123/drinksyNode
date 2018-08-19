@@ -4,6 +4,7 @@ const passport = require('passport');
 require('../passport');
 const { catchErrors } = require('../errorHandler/errorHandling');
 const { isValidId } = require('../middleware/validation');
+const { standardToMilitaryTO, standardToMilitaryFROM } = require('../middleware/standardToMilitary');
 const restaurant_controller = require('../controllers/restaurantsController');
 const user_controller = require('../controllers/userController');
 const auth_controller = require('../controllers/authenticationController');
@@ -29,6 +30,8 @@ router.post('/verifyToken',
 // Add a restaurant
 router.post('/addRestaurant/:id',
     passport.authenticate('jwt', { session: false }),
+    standardToMilitaryTO,
+    standardToMilitaryFROM,
     catchErrors(restaurant_controller.add_restaurant)
 );
 
@@ -36,6 +39,8 @@ router.post('/addRestaurant/:id',
 router.patch('/updateRestaurant/:id',
     isValidId,
     passport.authenticate('jwt', { session: false }),
+    standardToMilitaryTO,
+    standardToMilitaryFROM,
     catchErrors(restaurant_controller.update_restaurant)
 );
 
