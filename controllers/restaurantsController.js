@@ -54,9 +54,11 @@ exports.update_restaurant = async (req, res, next) => {
 exports.delete_restaurant = async (req, res, next) => {
     const id = req.params.id;
     const delete_restaurant = await queries.delete(id);
+    var integerId = parseInt(id, 10)
     if (delete_restaurant) {
         res.json({
-            deleted: true
+            deleted: true,
+            restaurantId: integerId
         })
     } else {
         res.status(404).send("Unable to delete restaurant :(");
