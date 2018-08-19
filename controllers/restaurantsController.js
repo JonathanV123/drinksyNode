@@ -26,35 +26,8 @@ exports.get_restaurant_by_id = async (req, res, next) => {
 exports.add_restaurant = async (req, res, next) => {
     const restaurant = req.body;
     const user_id = req.params.id;
-    let fromMilitary = null;
-    let toMilitary = null;
-    // From 
-    standardToMilitary(true, false, req.body.to, req.body.toTimeOfDay)
-    // To
-    standardToMilitary(false, true, req.body.from, req.body.fromTimeOfDay)
-    function standardToMilitary(to, from, time, m) {
-        // To Logic ************* Refactor this ugly function!
-        if (from === false && to === true) {
-            time = parseInt(time, 10);
-            if (m === 'am') {
-                toMilitary = time === 12 ? 0 : time;
-            } else {
-                toMilitary = time === 12 ? 12 : time + 12;
-            }
-        }
-        // From Logic ************* 
-        if (from === true && to === false) {
-            time = parseInt(time, 10);
-            if (m === 'am') {
-                fromMilitary = time === 12 ? 0 : time;
-            } else {
-                fromMilitary = time === 12 ? 12 : time + 12;
-            }
-        }
-
-    }
     // Add the restaurant
-    const add_restaurant = await queries.create(user_id, toMilitary, fromMilitary, restaurant);
+    const add_restaurant = await queries.create(user_id, res.locals.toMilitary, res.locals.fromMilitary, restaurant);
     // If successfully added send restaurant info back to client.
     if (add_restaurant) {
         res.json(add_restaurant[0]);
@@ -65,36 +38,9 @@ exports.add_restaurant = async (req, res, next) => {
 
 exports.update_restaurant = async (req, res, next) => {
     const id = req.params.id;
-    let fromMilitary = null;
-    let toMilitary = null;
-    // From 
-    standardToMilitary(true, false, req.body.toStandard, req.body.toTimeOfDay)
-    // To
-    standardToMilitary(false, true, req.body.fromStandard, req.body.fromTimeOfDay)
-    function standardToMilitary(to, from, time, m) {
-        // To Logic ************* Refactor this ugly function!
-        if (from === false && to === true) {
-            time = parseInt(time, 10);
-            if (m === 'am') {
-                toMilitary = time === 12 ? 0 : time;
-            } else {
-                toMilitary = time === 12 ? 12 : time + 12;
-            }
-        }
-        // From Logic ************* 
-        if (from === true && to === false) {
-            time = parseInt(time, 10);
-            if (m === 'am') {
-                fromMilitary = time === 12 ? 0 : time;
-            } else {
-                fromMilitary = time === 12 ? 12 : time + 12;
-            }
-        }
-
-    }
-    req.body.toMilitary = toMilitary;
-    req.body.fromMilitary = fromMilitary;
     const update_info = req.body;
+    req.body.toMilitary = res.locals.toMilitary;
+    req.body.fromMilitary = res.locals.fromMilitary;
     // Edit the restaurant
     const update_restaurant = await queries.update(id, update_info);
     // If successfully edited send restaurant info back to client.
